@@ -15,8 +15,13 @@ public class Wolf extends Predator{
         maxSatiety = Settings.wolfSatiety;
         satiety = Settings.wolfSatiety;
         moveSpeed = Settings.wolfSpeed;
+        animalCount = Settings.wolfCount;
     }
     public Animal getChild(){
         return new Wolf(location);
+    }
+
+    public String getImage(){
+        return "🐺";
     }
 }

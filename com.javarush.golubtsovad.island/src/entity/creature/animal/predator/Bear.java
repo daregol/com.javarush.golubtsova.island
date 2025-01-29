@@ -14,8 +14,12 @@ public class Bear extends Predator{
         maxSatiety = Settings.bearSatiety;
         satiety = Settings.bearSatiety;
         moveSpeed = Settings.bearSpeed;
+        animalCount = Settings.bearCount;
     }
     public Animal getChild(){
         return new Bear(location);
+    }
+    public String getImage(){
+        return "🐻";
     }
 }

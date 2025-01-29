@@ -15,8 +15,12 @@ public class Duck extends Herbivore{
         maxSatiety = Settings.duckSatiety;
         satiety = Settings.duckSatiety;
         moveSpeed = Settings.duckSpeed;
+        animalCount = Settings.duckCount;
     }
     public Animal getChild(){
         return new Duck(location);
+    }
+    public String getImage(){
+        return "🦆";
     }
 }

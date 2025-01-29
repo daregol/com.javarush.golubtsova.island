@@ -2,7 +2,6 @@ package entity.creature.animal.herbivore;
 
 import entity.Location;
 import entity.creature.animal.Animal;
-import entity.creature.animal.predator.Bear;
 import util.CreatureType;
 import util.Settings;
 
@@ -19,5 +18,8 @@ public class Boar extends Herbivore{
     }
     public Animal getChild(){
         return new Boar(location);
+    }
+    public String getImage(){
+        return "🐗";
     }
 }

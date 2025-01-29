@@ -7,14 +7,9 @@ import util.CreatureType;
 import util.Settings;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Location {
-    // ЛОКАЦИЯ ДОЛЖНА ЗНАТЬ ТЕКУЩЕЕ КОЛ-ВО ЖИВОТНЫХ КОНКРЕТНОГО ВИДА
-    // НА СЕБЕ
-    // МАССИВ?
-
-    // ЛОКАЦИЮ ТОЖЕ НУЖНО ПРАВИЛЬНО СОЗДАТЬ -
-    // ИНИЦИАЛИЗИРОВАВ ЕЕ НА СТАРТЕ КАКИМ-ТО КОЛ-ВОМ ЖИВОТНЫХ И РАСТЕНИЙ
     private final int x;
     private final int y;
 
@@ -29,7 +24,8 @@ public class Location {
         initMap();
         for(CreatureType a : CreatureType.values()) {
             if(a == CreatureType.PLANT) { continue; }
-            for (int i = 0; i < a.maxQuantity/4; i++) {
+
+            for (int i = 0; i < 3 && (ThreadLocalRandom.current().nextDouble() < Settings.chanceToSpawn); i++) {
                 animalsMap.get(a).add(factory.createAnimal(a, this));
             }
         }
@@ -51,7 +47,7 @@ public class Location {
     }
 
     public void restorePlant(){
-        plant.setQuantity(plant.getQuantity() + 50);
+        plant.setQuantity(plant.getQuantity() + 1);
         if (plant.getQuantity() > 200)
             plant.setQuantity(200);
     }

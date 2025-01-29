@@ -15,8 +15,12 @@ public class Rabbit extends Herbivore{
         maxSatiety = Settings.rabbitSatiety;
         satiety = Settings.rabbitSatiety;
         moveSpeed = Settings.rabbitSpeed;
+        animalCount = Settings.rabbitCount;
     }
     public Animal getChild(){
         return new Rabbit(location);
+    }
+    public String getImage(){
+        return "🐇";
     }
 }

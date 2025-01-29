@@ -57,10 +57,13 @@ public class Manager {
                     //Животное кушает
                     Animal otherAnimal;
                     int randomInt;
+                    int cnt = 0;
                     do {
                         randomInt = ThreadLocalRandom.current().nextInt(animals.size());
                         otherAnimal = animals.get(randomInt);
-                    } while(animal.getAnimalType() == otherAnimal.getAnimalType());
+                        cnt++;
+                    } while((animal.getAnimalType() == otherAnimal.getAnimalType()) && cnt < 10000 &&
+                            !animal.compareLocations(otherAnimal.getLocation()));
 
                     if(animal instanceof Herbivore) {
                         if (animal.getAnimalType() == CreatureType.DUCK ||
@@ -78,14 +81,15 @@ public class Manager {
                             animal.eat(loc.getPlant());
                         }
                     }
-                    else if(animal instanceof Predator) {
+                    if(animal instanceof Predator) {
                         animal.eat(otherAnimal);
                     }
 
                     //Движение животного
-                    for(int i = 0; i < animal.getMaxSpeed() &&
-                            ThreadLocalRandom.current().nextDouble() < Settings.chanceToMove; i++) {
-
+                    for(int i = 0; i < animal.getMaxSpeed() && ThreadLocalRandom.current().nextDouble() < Settings.chanceToMove; i++) {
+                        if(i==0) {
+                            System.out.println(animal.getImage() + " подвигался!");
+                        }
                         Direction d;
                         do {
                             int randomDirection = ThreadLocalRandom.current().nextInt(0, 4);
@@ -95,12 +99,31 @@ public class Manager {
                     }
 
                     //Размножение животных
-                    Animal child = animal.reproduce();
-                    if (child != null) {
-                        //System.out.println(animal.getSymbol() + " размножился!");
-                        loc.addAnimal(child);
+                    int sameAnimal = 0;
+                    for (Animal a : animals) {
+                        if (animal.getAnimalType() == a.getAnimalType()) {
+                            sameAnimal++;
+                        }
                     }
+
+                    for (Animal animalToReproduce : animals) {
+                        if(animal.getAnimalType() == animalToReproduce.getAnimalType() &&
+                                animal.compareLocations(animalToReproduce.getLocation())) {
+                            Animal child = animal.reproduce();
+                            if (child != null && animal.getMaxCount() >= sameAnimal) {
+                                System.out.println(animal.getImage() + " размножился!");
+                                loc.addAnimal(child);
+                                break;
+                            }
+                            else if(child == null) {
+                                break;
+                            }
+                        }
+                    }
+
+
                 }
+
             }
         }
     }

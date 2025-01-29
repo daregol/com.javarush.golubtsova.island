@@ -16,8 +16,12 @@ public class Sheep extends Herbivore{
         maxSatiety = Settings.sheepSatiety;
         satiety = Settings.sheepSatiety;
         moveSpeed = Settings.sheepSpeed;
+        animalCount = Settings.sheepCount;
     }
     public Animal getChild(){
         return new Sheep(location);
+    }
+    public String getImage(){
+        return "🐑";
     }
 }

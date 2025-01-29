@@ -15,8 +15,12 @@ public class Caterpillar extends Herbivore{
         maxSatiety = Settings.caterpillarSatiety;
         satiety = Settings.caterpillarSatiety;
         moveSpeed = Settings.caterpillarSpeed;
+        animalCount = Settings.caterpillarCount;
     }
     public Animal getChild(){
         return new Caterpillar(location);
+    }
+    public String getImage(){
+        return "🐛";
     }
 }

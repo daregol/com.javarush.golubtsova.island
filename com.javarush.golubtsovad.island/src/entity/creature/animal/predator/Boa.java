@@ -14,8 +14,12 @@ public class Boa extends Predator{
         maxSatiety = Settings.boaSatiety;
         satiety = Settings.boaSatiety;
         moveSpeed = Settings.boaSpeed;
+        animalCount = Settings.boaCount;
     }
     public Animal getChild(){
         return new Boa(location);
+    }
+    public String getImage(){
+        return "🐍";
     }
 }

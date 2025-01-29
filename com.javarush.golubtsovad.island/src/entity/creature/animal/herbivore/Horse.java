@@ -15,8 +15,12 @@ public class Horse extends Herbivore{
         maxSatiety = Settings.horseSatiety;
         satiety = Settings.horseSatiety;
         moveSpeed = Settings.horseSpeed;
+        animalCount = Settings.horseCount;
     }
     public Animal getChild(){
         return new Horse(location);
+    }
+    public String getImage(){
+        return "🐎";
     }
 }

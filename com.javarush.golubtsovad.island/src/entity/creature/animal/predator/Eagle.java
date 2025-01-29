@@ -14,8 +14,12 @@ public class Eagle extends Predator{
         maxSatiety = Settings.eagleSatiety;
         satiety = Settings.eagleSatiety;
         moveSpeed = Settings.eagleSpeed;
+        animalCount = Settings.eagleCount;
     }
     public Animal getChild(){
         return new Eagle(location);
+    }
+    public String getImage(){
+        return "🦅";
     }
 }

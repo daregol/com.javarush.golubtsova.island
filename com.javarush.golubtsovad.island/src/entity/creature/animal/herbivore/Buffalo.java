@@ -15,8 +15,12 @@ public class Buffalo extends Herbivore{
         maxSatiety = Settings.buffaloSatiety;
         satiety = Settings.buffaloSatiety;
         moveSpeed = Settings.buffaloSpeed;
+        animalCount = Settings.buffaloCount;
     }
     public Animal getChild(){
         return new Buffalo(location);
+    }
+    public String getImage(){
+        return "🐃";
     }
 }

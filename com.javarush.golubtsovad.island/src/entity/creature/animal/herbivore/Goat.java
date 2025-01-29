@@ -15,8 +15,12 @@ public class Goat extends Herbivore{
         maxSatiety = Settings.goatSatiety;
         satiety = Settings.goatSatiety;
         moveSpeed = Settings.goatSpeed;
+        animalCount = Settings.goatCount;
     }
     public Animal getChild(){
         return new Goat(location);
+    }
+    public String getImage(){
+        return "🐐";
     }
 }

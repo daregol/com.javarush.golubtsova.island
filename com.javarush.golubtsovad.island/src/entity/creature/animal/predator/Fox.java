@@ -14,8 +14,12 @@ public class Fox extends Predator{
         maxSatiety = Settings.foxSatiety;
         satiety = Settings.foxSatiety;
         moveSpeed = Settings.foxSpeed;
+        animalCount = Settings.foxCount;
     }
     public Animal getChild(){
         return new Fox(location);
+    }
+    public String getImage(){
+        return "🦊";
     }
 }

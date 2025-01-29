@@ -34,15 +34,12 @@ public abstract class Animal extends Creature {
     }
 
     public void decreaseSatiety(){
-        --satiety;
-        if (satiety <= 0)
+        satiety-=0.2*maxSatiety;
+        if (satiety <= 0){
+            System.out.println(this.getImage() + " умер от голода(");
             die();
+        }
     }
-
-    // ДЕФОЛТНАЯ РЕАЛИЗАЦИЯ
-    // КТО ИМЕННО ЭТОТ Creature БУДЕТ ВЛИЯТЬ НА ФОРМАТ ПОЕДАНИЯ
-    // КОГДА СТАНЕТ ПОНЯТНО КТО КОНКРЕТНО ЭТО Creature
-    // МЫ МОЖЕМ ОПРЕДЕЛИТЬ ВЕРОЯТНОСТЬ ЕГО ПОЕДАНИЯ И РЕАЛИЗОВАТЬ ЭТУ ЛОГИКУ
 
     public void eat(Creature c) {
         if (!alive)
@@ -60,14 +57,14 @@ public abstract class Animal extends Creature {
             else if (plant.getQuantity() < eaten){
                 satiety += plant.getQuantity();
                 plant.setQuantity(0);
-                //sout овца съела...
             }
-            System.out.println("КТО-ТО ПОЕЛ");
+            System.out.println(this.getImage() + " съел " + plant.getImage());
         }
-        else if (c instanceof Animal){
+        if (c instanceof Animal){
             Animal animal = (Animal) c;
             double probability = eatingProbability(animal);
             if (ThreadLocalRandom.current().nextDouble() < probability) {
+                System.out.println(this.getImage() + " съел " + animal.getImage());
                 satiety += animal.weight;
                 if (satiety > maxSatiety) {
                     satiety = maxSatiety;
@@ -100,7 +97,6 @@ public abstract class Animal extends Creature {
             location.removeAnimal(this);
             targetLocation.addAnimal(this);
             this.location = targetLocation;
-            System.out.println("КТО-ТО ПОДВИГАЛСЯ");
             return true;
         }
         return false;
@@ -113,7 +109,6 @@ public abstract class Animal extends Creature {
 
         if (ThreadLocalRandom.current().nextDouble() < Settings.chanceOfReproducing) {
             Animal child = getChild();
-            //System.out.println(this.getSymbol() + " размножился!");
             return child;
         }
         return null;
@@ -123,9 +118,18 @@ public abstract class Animal extends Creature {
         return alive;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public boolean compareLocations(Location location) {
+        if (this.location.getX() == location.getX() && this.location.getY() == location.getY()) {return true;}
+        return false;
+    }
+
     void die() {
         alive = false;
-        System.out.println("КТО-ТО УМЕР");
+        //System.out.println(this.getImage() + " умер(");
     }
 
     public void updateWeight(){
@@ -140,9 +144,11 @@ public abstract class Animal extends Creature {
         return moveSpeed;
     }
 
-    protected double eatingProbability(Creature creature) {
-        return eatingProbabilities.getOrDefault(getAnimalType(), 0.0);
+    public double eatingProbability(Animal animal) {
+        return eatingProbabilities.getOrDefault(animal.getAnimalType(), 0.0);
     }
+
+    public abstract String getImage();
 
     public abstract Animal getChild();
 }

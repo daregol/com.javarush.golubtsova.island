@@ -15,8 +15,12 @@ public class Deer extends Herbivore{
         maxSatiety = Settings.deerSatiety;
         satiety = Settings.deerSatiety;
         moveSpeed = Settings.deerSpeed;
+        animalCount = Settings.deerCount;
     }
     public Animal getChild(){
         return new Deer(location);
+    }
+    public String getImage(){
+        return "🦌";
     }
 }

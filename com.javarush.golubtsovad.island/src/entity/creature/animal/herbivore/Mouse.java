@@ -15,8 +15,12 @@ public class Mouse extends Herbivore{
         maxSatiety = Settings.mouseSatiety;
         satiety = Settings.mouseSatiety;
         moveSpeed = Settings.mouseSpeed;
+        animalCount = Settings.mouseCount;
     }
     public Animal getChild(){
         return new Mouse(location);
+    }
+    public String getImage(){
+        return "🐁";
     }
 }

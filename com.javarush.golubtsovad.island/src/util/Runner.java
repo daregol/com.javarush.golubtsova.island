@@ -7,23 +7,23 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Runner {
-    private final Island island;
+    private Island island;
     private ScheduledExecutorService scheduler;
 
     private final Manager simulationManager;
-    //private final StatisticsPrinter statisticsPrinter;
+    private final Statistic statistics;
 
     public Runner(Island island) {
         this.island = island;
         this.simulationManager = new Manager(island);
-        //this.statisticsPrinter = new StatisticsPrinter(island);
+        this.statistics = new Statistic(island);
     }
 
     public void start() {
         scheduler = Executors.newScheduledThreadPool(4);
 
-        scheduler.scheduleAtFixedRate(simulationManager::update, 0, 2, TimeUnit.SECONDS);
-        //scheduler.scheduleAtFixedRate(statisticsPrinter::print, 0, 5, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(statistics::print, 1, 9, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(simulationManager::update, 0, 8, TimeUnit.SECONDS);
 
         System.out.println("Симуляция запущена!");
     }
