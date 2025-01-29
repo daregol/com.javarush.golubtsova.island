@@ -114,7 +114,6 @@ public abstract class Animal extends Creature {
         if (ThreadLocalRandom.current().nextDouble() < Settings.chanceOfReproducing) {
             Animal child = getChild();
             //System.out.println(this.getSymbol() + " размножился!");
-            System.out.println("КТО-ТО ПОТРАХАЛСЯ");
             return child;
         }
         return null;
