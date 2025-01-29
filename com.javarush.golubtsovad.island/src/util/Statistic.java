@@ -15,7 +15,7 @@ public class Statistic {
         this.island = island;
     }
 
-    public void print() {
+    public synchronized void print() {
         printStatistics();
         printMap();
     }
@@ -38,11 +38,11 @@ public class Statistic {
             }
         }
 
-        System.out.println("[СТАТИСТИКА] Животных: " + totalAnimals + ", Растений: " + totalPlants);
+        System.out.println("КОЛИЧЕСТВО Животных: " + totalAnimals + ", Растений: " + totalPlants);
     }
 
     private void printMap() {
-        System.out.println("=== Карта острова ===");
+        System.out.println("-------------------------------------- Остров --------------------------------------");
         for (int x = 0; x < Settings.columnsCount; x++) {
             for (int y = 0; y < Settings.rowsCount; y++) {
                 Location loc = island.getLocation(x, y);
@@ -61,6 +61,6 @@ public class Statistic {
             }
             System.out.println();
         }
-        System.out.println("======================");
+        System.out.println("------------------------------------------------------------------------------------");
     }
 }

@@ -18,7 +18,7 @@ public class Manager {
         this.island = island;
     }
 
-    public void update() {
+    public synchronized void update() {
         updateAnimals();
         updatePlant();
     }

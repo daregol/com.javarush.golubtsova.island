@@ -22,8 +22,8 @@ public class Runner {
     public void start() {
         scheduler = Executors.newScheduledThreadPool(4);
 
-        scheduler.scheduleAtFixedRate(statistics::print, 1, 9, TimeUnit.SECONDS);
         scheduler.scheduleAtFixedRate(simulationManager::update, 0, 8, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(statistics::print, 1, 9, TimeUnit.SECONDS);
 
         System.out.println("Симуляция запущена!");
     }
