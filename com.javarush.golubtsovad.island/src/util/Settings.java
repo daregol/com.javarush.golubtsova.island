@@ -7,9 +7,9 @@ public class Settings {
   public final static int columnsCount = 20;
   public final static int rowsCount = 100;
 
-  public final static double chanceOfReproducing = 0.1;
+  public final static double chanceOfReproducing = 0.25;
   public final static double chanceToMove = 0.5;
-  public final static double chanceToSpawn = 0.05;
+  public final static double chanceToSpawn = 0.3;
 
   public final static int wolfWeight = 50;
   public final static int boaWeight = 15;

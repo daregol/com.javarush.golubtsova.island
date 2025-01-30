@@ -23,6 +23,20 @@ public class Statistic {
     private void printStatistics() {
         int totalAnimals = 0;
         int totalPlants = 0;
+        System.out.println("Статистика по каждой локации \uD83D\uDC47 ");
+        for (int x = 0; x < Settings.columnsCount; x++) {
+            for (int y = 0; y < Settings.rowsCount; y++) {
+                Location loc = island.getLocation(x, y);
+                System.out.print("(" + x + ";" + y + ")");
+                for (CreatureType creatureType : CreatureType.values()) {
+                    if(creatureType == CreatureType.PLANT) {continue;}
+                    if (loc.getAnimalsMap().get(creatureType).isEmpty()) {continue;}
+                    System.out.print(loc.getAnimalsMap().get(creatureType).get(0).getImage() +
+                            "(" + loc.getAnimalsMap().get(creatureType).size() + ") ");
+                }
+                System.out.println();
+            }
+        }
 
         for (int x = 0; x < Settings.columnsCount; x++) {
             for (int y = 0; y < Settings.rowsCount; y++) {
@@ -40,6 +54,8 @@ public class Statistic {
 
         System.out.println("КОЛИЧЕСТВО Животных: " + totalAnimals + ", Растений: " + totalPlants);
     }
+
+
 
     private void printMap() {
         System.out.println("-------------------------------------- Остров --------------------------------------");

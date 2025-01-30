@@ -17,9 +17,9 @@ public class Location {
     HashMap<CreatureType, List<Animal>> animalsMap = new HashMap<>();
     AnimalFactory factory = new AnimalFactory();
 
-    public Location(int _x, int _y){
-        this.x = _x;
-        this.y = _y;
+    public Location(int x, int y){
+        this.x = x;
+        this.y = y;
         plant = new Plant();
         initMap();
         for(CreatureType a : CreatureType.values()) {

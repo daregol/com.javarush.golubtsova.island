@@ -3,6 +3,7 @@ package entity.creature.animal;
 import entity.Island;
 import entity.Location;
 import entity.creature.Creature;
+import entity.creature.animal.herbivore.Caterpillar;
 import entity.creature.plant.Plant;
 import util.CreatureType;
 import util.Direction;
@@ -20,13 +21,13 @@ public abstract class Animal extends Creature {
     protected int moveSpeed;
     protected double weight;
     protected double currentWeight;
-    public CreatureType animalType;
+    protected CreatureType animalType;
     protected Location location;
     protected int animalCount;
-    private boolean alive = true;
+    protected boolean alive = true;
 
-    public Animal(Location l){
-         this.location = l;
+    public Animal(Location location){
+         this.location = location;
     }
 
     public CreatureType getAnimalType() {
@@ -36,7 +37,7 @@ public abstract class Animal extends Creature {
     public void decreaseSatiety(){
         satiety-=0.2*maxSatiety;
         if (satiety <= 0){
-            System.out.println(this.getImage() + " умер от голода(");
+            //System.out.println(this.getImage() + " умер от голода(");
             die();
         }
     }
@@ -58,13 +59,13 @@ public abstract class Animal extends Creature {
                 satiety += plant.getQuantity();
                 plant.setQuantity(0);
             }
-            System.out.println(this.getImage() + " съел " + plant.getImage());
+            //System.out.println(this.getImage() + " съел " + plant.getImage());
         }
         if (c instanceof Animal){
             Animal animal = (Animal) c;
             double probability = eatingProbability(animal);
             if (ThreadLocalRandom.current().nextDouble() < probability) {
-                System.out.println(this.getImage() + " съел " + animal.getImage());
+                //System.out.println(this.getImage() + " съел " + animal.getImage());
                 satiety += animal.weight;
                 if (satiety > maxSatiety) {
                     satiety = maxSatiety;

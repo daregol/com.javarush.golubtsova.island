@@ -7,8 +7,10 @@ import util.CreatureType;
 import util.Settings;
 
 public class Caterpillar extends Herbivore{
+    public int cnt_life;
     public Caterpillar(Location l) {
         super(l);
+        cnt_life = 3;
         eatingProbabilities = Settings.CATERPILLAR_EATING_PROBABILITIES;
         this.animalType = CreatureType.CATERPILLAR;
         weight = Settings.caterpillarWeight;
@@ -20,7 +22,15 @@ public class Caterpillar extends Herbivore{
     public Animal getChild(){
         return new Caterpillar(location);
     }
+
     public String getImage(){
         return "🐛";
     }
+
+    @Override
+    public void decreaseSatiety() {
+        if(cnt_life == 0) { alive = false; }
+        cnt_life--;
+    }
+
 }

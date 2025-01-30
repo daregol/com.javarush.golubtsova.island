@@ -88,7 +88,7 @@ public class Manager {
                     //Движение животного
                     for(int i = 0; i < animal.getMaxSpeed() && ThreadLocalRandom.current().nextDouble() < Settings.chanceToMove; i++) {
                         if(i==0) {
-                            System.out.println(animal.getImage() + " подвигался!");
+                            //System.out.println(animal.getImage() + " подвигался!");
                         }
                         Direction d;
                         do {
@@ -101,7 +101,7 @@ public class Manager {
                     //Размножение животных
                     int sameAnimal = 0;
                     for (Animal a : animals) {
-                        if (animal.getAnimalType() == a.getAnimalType()) {
+                        if (animal.getAnimalType() == a.getAnimalType() && animal.compareLocations(a.getLocation())) {
                             sameAnimal++;
                         }
                     }
@@ -110,8 +110,8 @@ public class Manager {
                         if(animal.getAnimalType() == animalToReproduce.getAnimalType() &&
                                 animal.compareLocations(animalToReproduce.getLocation())) {
                             Animal child = animal.reproduce();
-                            if (child != null && animal.getMaxCount() >= sameAnimal) {
-                                System.out.println(animal.getImage() + " размножился!");
+                            if (child != null && animal.getMaxCount() >= sameAnimal && sameAnimal > 1) {
+                                //System.out.println(animal.getImage() + " размножился!");
                                 loc.addAnimal(child);
                                 break;
                             }
