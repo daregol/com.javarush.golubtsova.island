@@ -9,7 +9,7 @@ public class Settings {
 
   public final static double chanceOfReproducing = 0.25;
   public final static double chanceToMove = 0.5;
-  public final static double chanceToSpawn = 0.3;
+  public final static double chanceToSpawn = 0.2;
 
   public final static int wolfWeight = 50;
   public final static int boaWeight = 15;

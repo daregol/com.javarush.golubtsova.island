@@ -6,7 +6,7 @@ public class Plant extends Creature {
      int quantity;
 
      public Plant() {
-         this.quantity = 1;
+         this.quantity = 10;
      }
 
      public void setQuantity(int _quantity) {
